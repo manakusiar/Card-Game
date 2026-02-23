@@ -1,0 +1,29 @@
+What can a player do?:
+	1. Starting phase: Play cards.
+	2. Main phase: Make choices of what cards will do when triggered.
+	3. End phase:
+		a. Discard down to 7.
+
+What can cards do?:
+	1. Attack --- Deal damage to the nearest enemy in front. (Check for keywords)
+	2. Move --- Move left, right, up or down.
+	3. Use their abilities --- Do whatever is written on the card.
+
+What areas of play are there?:
+	1. The deck / decks --- Holds the cards that the players draw and use.
+	2. The battlefield:
+		a. 4x2 field for creatures.
+		b. 2-3 for items.
+	3. The graveyard --- holds all killed creatures (sacrificed and enemies)
+	4. The players hands --- infinite area, holds playable cards that you must discard down to 7 on the endstep.
+
+What happens automatically?:
+	1. Main phase:
+		a. The triggering and prompting of card actions of every card depending on their speed.
+		b. Resolving any matching speeds through coin flip.
+	2. End phase:
+		a. Clean up --- until end of turn effects end, any "on end step / phase" effects trigger.
+
+Where to start?:
+	1. Create a array / grid system per player for each area of play, then make them automatically sync with the server.
+	2. Add a display to the grid global system that creates interractible cards.

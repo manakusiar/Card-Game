@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://d2yi4aymxrx78"]
+
+[ext_resource type="Script" uid="uid://c55fng0uwxnyn" path="res://components/cards/card.gd" id="1_euvpf"]
+[ext_resource type="Texture2D" uid="uid://cahyipgok86pu" path="res://components/cards/backs/empty-card.png" id="1_v77n5"]
+[ext_resource type="FontFile" uid="uid://ckyjvtwid7rr0" path="res://components/cards/fonts/GallaeciaForte.ttf" id="2_8jdm3"]
+[ext_resource type="FontFile" uid="uid://clsj8ny0lndfw" path="res://components/cards/fonts/KiwiSoda.ttf" id="2_x6q5j"]
+[ext_resource type="Texture2D" uid="uid://b2l7gkjlje8kn" path="res://components/cards/images/sword.png" id="3_a4l50"]
+
+[node name="Card" type="Node2D" unique_id=1997422737 node_paths=PackedStringArray("LabelDamage", "LabelCost", "LabelHealth")]
+script = ExtResource("1_euvpf")
+LabelDamage = NodePath("CardBack/BoxContainer/BottomContainer/LeftControl/Damage")
+LabelCost = NodePath("CardBack/BoxContainer/BottomContainer/MiddleControl/Cost")
+LabelHealth = NodePath("CardBack/BoxContainer/BottomContainer/RightControl/Health")
+
+[node name="CardBack" type="Sprite2D" parent="." unique_id=439406211]
+texture = ExtResource("1_v77n5")
+
+[node name="BoxContainer" type="VBoxContainer" parent="CardBack" unique_id=10491245]
+custom_minimum_size = Vector2(80, 112)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TopContainer" type="HBoxContainer" parent="CardBack/BoxContainer" unique_id=1419503335]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CardBack/BoxContainer/TopContainer" unique_id=352690379]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_x6q5j")
+text = "SLASH"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MiddleContainer" type="HBoxContainer" parent="CardBack/BoxContainer" unique_id=1828241134]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CardBack/BoxContainer/MiddleContainer" unique_id=1598539434]
+position = Vector2(40, 26)
+texture = ExtResource("3_a4l50")
+
+[node name="BottomContainer" type="HBoxContainer" parent="CardBack/BoxContainer" unique_id=569931305]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftControl" type="Control" parent="CardBack/BoxContainer/BottomContainer" unique_id=1522792678]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Damage" type="Label" parent="CardBack/BoxContainer/BottomContainer/LeftControl" unique_id=740496735]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8jdm3")
+text = "2"
+autowrap_mode = 2
+
+[node name="MiddleControl" type="Control" parent="CardBack/BoxContainer/BottomContainer" unique_id=1442988179]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Cost" type="Label" parent="CardBack/BoxContainer/BottomContainer/MiddleControl" unique_id=1313863621]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8jdm3")
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="RightControl" type="Control" parent="CardBack/BoxContainer/BottomContainer" unique_id=1172336553]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Health" type="Label" parent="CardBack/BoxContainer/BottomContainer/RightControl" unique_id=1502469776]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 10.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8jdm3")
+text = "-"
+horizontal_alignment = 2
+autowrap_mode = 2
