@@ -10,7 +10,7 @@ func _on_start_client_pressed() -> void:
 
 func _ready() -> void:
 	NetworkHandler.connection_status_changed.connect(network_connection_status_changed)
-	NetworkHandler.player_joined.connect(player_joined)
+	PlayerHandler.players_updated.connect(player_joined)
 
 func network_connection_status_changed(new_status) -> void:
 	var _s = NetworkHandler.CONNECTION_STATUSES
@@ -21,5 +21,8 @@ func network_connection_status_changed(new_status) -> void:
 	elif _s.DISCONNECTED == new_status:
 			connection_status_label.text = "Disconnected from server."
 
-func player_joined(id: int) -> void:
-	connection_status_label.text = "Player " + str(id) + " joined the server!"
+func player_joined(peer_id: int, disconnected: bool) -> void:
+	if disconnected: 
+		connection_status_label.text = "Player " + str(PlayerHandler.get_player_index(peer_id)) + " - " + str(peer_id) + " disconnected the server!"
+	else:
+		connection_status_label.text = "Player " + str(PlayerHandler.get_player_index(peer_id)) + " - " + str(peer_id) + " joined the server!"

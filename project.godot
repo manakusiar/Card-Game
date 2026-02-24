@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 NetworkHandler="*uid://cmj42jfpekho6"
 AreaHandler="*uid://b3anyum666oed"
+PlayerHandler="*uid://bmci3fyox7tyd"
 
 [display]
 
