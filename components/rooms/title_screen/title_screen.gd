@@ -1,11 +1,5 @@
 extends Node2D
 
-func _on_start_server_pressed() -> void:
-	NetworkHandler.start_server()
-
-func _on_start_client_pressed() -> void:
-	NetworkHandler.start_client()
-
 @export var connection_status_label: Label
 
 func _ready() -> void:

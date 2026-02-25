@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d1s428kp1pepv"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ooixt"]
+properties/0/path = NodePath("CheckButton:button_pressed")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Lobby" type="Node2D" unique_id=1781024536]
+
+[node name="Label" type="Label" parent="." unique_id=1041803746]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "LOBBY SCREEN"
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=1359190735]
+offset_left = 206.0
+offset_top = 59.0
+offset_right = 250.0
+offset_bottom = 83.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=524342865]
+replication_config = SubResource("SceneReplicationConfig_ooixt")

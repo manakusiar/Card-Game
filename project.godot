@@ -25,6 +25,7 @@ PlayerHandler="*uid://bmci3fyox7tyd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/resizable=false
 
 [physics]
 

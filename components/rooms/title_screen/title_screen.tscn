@@ -2,39 +2,46 @@
 
 [ext_resource type="Script" uid="uid://bwx0ydjsoa0vr" path="res://components/rooms/title_screen/title_screen.gd" id="1_k4icw"]
 [ext_resource type="Script" uid="uid://cctsph5nedpf3" path="res://components/rooms/title_screen/state_machine.gd" id="2_jj62v"]
-[ext_resource type="Script" uid="uid://cbnrvyevgwnc0" path="res://globals/handlers/state/state.gd" id="3_upy21"]
+[ext_resource type="Script" uid="uid://cdc51rxh8nlxc" path="res://components/rooms/title_screen/states/title_main_state.gd" id="3_jj62v"]
+[ext_resource type="Script" uid="uid://bbjm2myurqe1n" path="res://components/rooms/title_screen/states/title_join_state.gd" id="4_d2hus"]
+[ext_resource type="Script" uid="uid://tis3a0fcx8wn" path="res://components/rooms/title_screen/states/title_options_state.gd" id="5_m22od"]
+[ext_resource type="Script" uid="uid://bhkb26ci5rc7" path="res://components/rooms/title_screen/states/title_host_state.gd" id="6_m22od"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_42wdy"]
 
 [node name="TitleScreen" type="Node2D" unique_id=586295874 node_paths=PackedStringArray("connection_status_label")]
 script = ExtResource("1_k4icw")
-connection_status_label = NodePath("HBoxContainer/VBoxContainer/Control/Label")
+connection_status_label = NodePath("TitleContainer/MainScreen/Control/Label")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=877361109]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=386518931]
+replication_config = SubResource("SceneReplicationConfig_42wdy")
+
+[node name="TitleContainer" type="HBoxContainer" parent="." unique_id=877361109]
 offset_right = 640.0
 offset_bottom = 360.0
 size_flags_vertical = 3
 
-[node name="LeftPadding" type="Control" parent="HBoxContainer" unique_id=953792633]
+[node name="LeftPadding" type="Control" parent="TitleContainer" unique_id=953792633]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=526613986]
+[node name="MainScreen" type="VBoxContainer" parent="TitleContainer" unique_id=526613986]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 
-[node name="StartServer" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1644556833]
+[node name="StartServer" type="Button" parent="TitleContainer/MainScreen" unique_id=1644556833]
 layout_mode = 2
 text = "Start Server"
 
-[node name="StartClient" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=818517120]
+[node name="StartClient" type="Button" parent="TitleContainer/MainScreen" unique_id=818517120]
 layout_mode = 2
 text = "Start Client"
 
-[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=502497507]
+[node name="Control" type="Control" parent="TitleContainer/MainScreen" unique_id=502497507]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Control" unique_id=327506957]
+[node name="Label" type="Label" parent="TitleContainer/MainScreen/Control" unique_id=327506957]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -47,19 +54,126 @@ text = "NOT CONNECTED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RightPadding" type="Control" parent="HBoxContainer" unique_id=119316413]
+[node name="JoinScreen" type="VBoxContainer" parent="TitleContainer" unique_id=1523392696]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="TitleContainer/JoinScreen" unique_id=898490906]
+layout_mode = 2
+text = "Join a friend using their IP!"
+horizontal_alignment = 1
+
+[node name="IpLineEdit" type="LineEdit" parent="TitleContainer/JoinScreen" unique_id=1838377032]
+layout_mode = 2
+placeholder_text = "localhost:25565"
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="TitleContainer/JoinScreen" unique_id=1798283780]
+layout_mode = 2
+text = "Join! "
+
+[node name="Node" type="Control" parent="TitleContainer/JoinScreen" unique_id=873139491]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="TitleContainer/JoinScreen/Node" unique_id=1632680632]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back"
+
+[node name="HostScreen" type="VBoxContainer" parent="TitleContainer" unique_id=562533157]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="TitleContainer/HostScreen" unique_id=222579052]
+layout_mode = 2
+text = "Host a server for your friends!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleContainer/HostScreen" unique_id=1551375651]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HostButton" type="VBoxContainer" parent="TitleContainer/HostScreen/HBoxContainer" unique_id=59382147]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=386518931]
-replication_config = SubResource("SceneReplicationConfig_42wdy")
+[node name="LineEdit" type="LineEdit" parent="TitleContainer/HostScreen/HBoxContainer/HostButton" unique_id=1643163996]
+layout_mode = 2
+placeholder_text = "25565"
+alignment = 1
 
-[node name="StateMachine" type="Node" parent="." unique_id=656980951]
+[node name="HostButton" type="Button" parent="TitleContainer/HostScreen/HBoxContainer/HostButton" unique_id=684573295]
+layout_mode = 2
+text = "Host!"
+
+[node name="PlayerCountSlider" type="VBoxContainer" parent="TitleContainer/HostScreen/HBoxContainer" unique_id=890890706]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PlayerCount" type="Label" parent="TitleContainer/HostScreen/HBoxContainer/PlayerCountSlider" unique_id=2034178735]
+layout_mode = 2
+text = "Player Count: 2"
+
+[node name="HSlider" type="HSlider" parent="TitleContainer/HostScreen/HBoxContainer/PlayerCountSlider" unique_id=1347828344]
+layout_mode = 2
+min_value = 2.0
+max_value = 4.0
+value = 2.0
+tick_count = 3
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="Node" type="Control" parent="TitleContainer/HostScreen" unique_id=1988337035]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="TitleContainer/HostScreen/Node" unique_id=1392608557]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back"
+
+[node name="RightPadding" type="Control" parent="TitleContainer" unique_id=119316413]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StateMachine" type="Node" parent="." unique_id=656980951 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_jj62v")
+initial_state = NodePath("TitleMainState")
 
-[node name="Main" type="Node" parent="StateMachine" unique_id=2015217075]
-script = ExtResource("3_upy21")
-metadata/_custom_type_script = "uid://cbnrvyevgwnc0"
+[node name="TitleMainState" type="Node" parent="StateMachine" unique_id=1198738720 node_paths=PackedStringArray("MainScreen")]
+script = ExtResource("3_jj62v")
+MainScreen = NodePath("../../TitleContainer/MainScreen")
+metadata/_custom_type_script = "uid://cdc51rxh8nlxc"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartClient" to="." method="_on_start_client_pressed"]
+[node name="TitleJoinState" type="Node" parent="StateMachine" unique_id=469962711 node_paths=PackedStringArray("JoinScreen", "JoinLabel", "IpLineEdit")]
+script = ExtResource("4_d2hus")
+JoinScreen = NodePath("../../TitleContainer/JoinScreen")
+JoinLabel = NodePath("../../TitleContainer/JoinScreen/Label")
+IpLineEdit = NodePath("../../TitleContainer/JoinScreen/IpLineEdit")
+metadata/_custom_type_script = "uid://bbjm2myurqe1n"
+
+[node name="TitleOptionsState" type="Node" parent="StateMachine" unique_id=2046166747]
+script = ExtResource("5_m22od")
+metadata/_custom_type_script = "uid://tis3a0fcx8wn"
+
+[node name="TitleHostState" type="Node" parent="StateMachine" unique_id=989452866 node_paths=PackedStringArray("HostScreen", "PlayerCountLabel", "PlayerCountSlider", "PortLineEdit")]
+script = ExtResource("6_m22od")
+HostScreen = NodePath("../../TitleContainer/HostScreen")
+PlayerCountLabel = NodePath("../../TitleContainer/HostScreen/HBoxContainer/PlayerCountSlider/PlayerCount")
+PlayerCountSlider = NodePath("../../TitleContainer/HostScreen/HBoxContainer/PlayerCountSlider/HSlider")
+PortLineEdit = NodePath("../../TitleContainer/HostScreen/HBoxContainer/HostButton/LineEdit")
+metadata/_custom_type_script = "uid://bhkb26ci5rc7"
+
+[connection signal="pressed" from="TitleContainer/MainScreen/StartServer" to="StateMachine/TitleMainState" method="_on_start_server_pressed"]
+[connection signal="pressed" from="TitleContainer/MainScreen/StartClient" to="StateMachine/TitleMainState" method="_on_start_client_pressed"]
+[connection signal="pressed" from="TitleContainer/JoinScreen/JoinButton" to="StateMachine/TitleJoinState" method="_on_join_button_pressed"]
+[connection signal="pressed" from="TitleContainer/JoinScreen/Node/Back" to="StateMachine/TitleJoinState" method="_on_back_pressed"]
+[connection signal="pressed" from="TitleContainer/HostScreen/HBoxContainer/HostButton/HostButton" to="StateMachine/TitleHostState" method="_on_host_button_pressed"]
+[connection signal="value_changed" from="TitleContainer/HostScreen/HBoxContainer/PlayerCountSlider/HSlider" to="StateMachine/TitleHostState" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="TitleContainer/HostScreen/Node/Back" to="StateMachine/TitleHostState" method="_on_back_pressed"]
