@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bqqkerd6bxla"]
 
 [ext_resource type="Script" uid="uid://bwx0ydjsoa0vr" path="res://components/rooms/title_screen/title_screen.gd" id="1_k4icw"]
+[ext_resource type="Script" uid="uid://cctsph5nedpf3" path="res://components/rooms/title_screen/state_machine.gd" id="2_jj62v"]
+[ext_resource type="Script" uid="uid://cbnrvyevgwnc0" path="res://globals/handlers/state/state.gd" id="3_upy21"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_42wdy"]
 
@@ -51,6 +53,13 @@ size_flags_horizontal = 3
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=386518931]
 replication_config = SubResource("SceneReplicationConfig_42wdy")
+
+[node name="StateMachine" type="Node" parent="." unique_id=656980951]
+script = ExtResource("2_jj62v")
+
+[node name="Main" type="Node" parent="StateMachine" unique_id=2015217075]
+script = ExtResource("3_upy21")
+metadata/_custom_type_script = "uid://cbnrvyevgwnc0"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/StartClient" to="." method="_on_start_client_pressed"]
