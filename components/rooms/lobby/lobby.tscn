@@ -32,6 +32,10 @@ size_flags_vertical = 6
 layout_mode = 2
 text = "Show Server Options"
 
+[node name="StartGame" type="Button" parent="HBoxContainer/Main/ServerOptionsMain" unique_id=582790699]
+layout_mode = 2
+text = "Start Game"
+
 [node name="ClientOptionsMain" type="VBoxContainer" parent="HBoxContainer/Main" unique_id=1633852913]
 layout_mode = 2
 size_flags_vertical = 3
