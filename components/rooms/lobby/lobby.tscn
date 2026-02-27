@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d1s428kp1pepv"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ooixt"]
-properties/0/path = NodePath("CheckButton:button_pressed")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[ext_resource type="Script" uid="uid://cctsph5nedpf3" path="res://globals/state_machine/state_machine.gd" id="1_6va8y"]
+[ext_resource type="Script" uid="uid://dr4photimb7io" path="res://components/rooms/lobby/states/lobby_main_state.gd" id="2_2i1ti"]
+[ext_resource type="Script" uid="uid://c7874uln8nyjb" path="res://components/rooms/lobby/states/lobby_client_options_state.gd" id="3_7kc4q"]
+[ext_resource type="Script" uid="uid://chuns1kdbsu4a" path="res://components/rooms/lobby/states/lobby_server_options_state.gd" id="4_wvkdp"]
 
 [node name="Lobby" type="Node2D" unique_id=1781024536]
 
@@ -12,11 +12,70 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "LOBBY SCREEN"
 
-[node name="CheckButton" type="CheckButton" parent="." unique_id=1359190735]
-offset_left = 206.0
-offset_top = 59.0
-offset_right = 250.0
-offset_bottom = 83.0
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=771598341]
+offset_right = 640.0
+offset_bottom = 360.0
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=524342865]
-replication_config = SubResource("SceneReplicationConfig_ooixt")
+[node name="LeftPadding" type="Control" parent="HBoxContainer" unique_id=184402529]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Main" type="VBoxContainer" parent="HBoxContainer" unique_id=1022897220]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ServerOptionsMain" type="VBoxContainer" parent="HBoxContainer/Main" unique_id=479408171]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ShowServerOptions" type="Button" parent="HBoxContainer/Main/ServerOptionsMain" unique_id=1859429270]
+layout_mode = 2
+text = "Show Server Options"
+
+[node name="ClientOptionsMain" type="VBoxContainer" parent="HBoxContainer/Main" unique_id=1633852913]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ShowClientOptions" type="Button" parent="HBoxContainer/Main/ClientOptionsMain" unique_id=1149869072]
+layout_mode = 2
+text = "Show Client Options
+"
+
+[node name="ClientOptions" type="VBoxContainer" parent="HBoxContainer" unique_id=1065958391]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ServerOptions" type="VBoxContainer" parent="HBoxContainer" unique_id=1326431486]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightPadding" type="Control" parent="HBoxContainer" unique_id=1209583322]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StateMachine" type="Node" parent="." unique_id=2056291991 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_6va8y")
+initial_state = NodePath("LobbyMainState")
+metadata/_custom_type_script = "uid://cctsph5nedpf3"
+
+[node name="LobbyMainState" type="Node" parent="StateMachine" unique_id=1519054486 node_paths=PackedStringArray("MainScreen", "ServerOptionsMain")]
+script = ExtResource("2_2i1ti")
+MainScreen = NodePath("../../HBoxContainer/Main")
+ServerOptionsMain = NodePath("../../HBoxContainer/Main/ServerOptionsMain")
+metadata/_custom_type_script = "uid://dr4photimb7io"
+
+[node name="LobbyClientOptionsState" type="Node" parent="StateMachine" unique_id=202516214 node_paths=PackedStringArray("ClientOptions")]
+script = ExtResource("3_7kc4q")
+ClientOptions = NodePath("../../HBoxContainer/ClientOptions")
+metadata/_custom_type_script = "uid://c7874uln8nyjb"
+
+[node name="LobbyServerOptionsState" type="Node" parent="StateMachine" unique_id=359408310 node_paths=PackedStringArray("ServerOptions")]
+script = ExtResource("4_wvkdp")
+ServerOptions = NodePath("../../HBoxContainer/ServerOptions")
+metadata/_custom_type_script = "uid://chuns1kdbsu4a"
+
+[connection signal="pressed" from="HBoxContainer/Main/ServerOptionsMain/ShowServerOptions" to="StateMachine/LobbyMainState" method="_on_show_server_options_pressed"]
+[connection signal="pressed" from="HBoxContainer/Main/ClientOptionsMain/ShowClientOptions" to="StateMachine/LobbyMainState" method="_on_show_client_options_pressed"]
